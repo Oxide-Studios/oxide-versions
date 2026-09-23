@@ -1,0 +1,33 @@
+{
+  "generated": "2026-09-22T18:31:18Z",
+  "resources": {
+    "o-link": "1.8.1",
+    "oxide-animalcontroljob": "1.4.0",
+    "oxide-baitcar": "1.0.3",
+    "oxide-banking": "2.1.0",
+    "oxide-blackmarket": "1.9.1",
+    "oxide-chat": "2.0.0",
+    "oxide-cocaine": "1.3.0",
+    "oxide-dealerships": "1.0.4",
+    "oxide-dispatch": "1.4.0",
+    "oxide-drugselling": "1.2.0",
+    "oxide-ems": "1.1.0",
+    "oxide-gangs": "1.0.0",
+    "oxide-landscapingjob": "1.4.0",
+    "oxide-medical": "1.1.0",
+    "oxide-meth": "1.6.0",
+    "oxide-multichar": "2.0.3",
+    "oxide-newspaperjob": "1.2.0",
+    "oxide-pizzajob": "1.3.0",
+    "oxide-police": "1.9.0",
+    "oxide-postaljob": "1.3.0",
+    "oxide-radio": "1.1.0",
+    "oxide-roadsideassistancejob": "1.4.1",
+    "oxide-shops": "1.2.0",
+    "oxide-tablet": "1.0.0",
+    "oxide-vending": "1.6.0",
+    "oxide-weaponprinting": "1.1.4",
+    "oxide-weather": "1.0.0",
+    "oxide-weed": "1.5.0"
+  }
+}

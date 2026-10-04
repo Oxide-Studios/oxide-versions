@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-02T17:39:24.772Z",
+  "generated": "2026-10-04T11:50:20.877Z",
   "resources": {
     "oxide-animalcontroljob": "1.5.0",
     "oxide-baitcar": "1.0.3",
@@ -8,7 +8,7 @@
     "oxide-carplayer": "2.0.0",
     "oxide-chat": "2.0.0",
     "oxide-cocaine": "1.3.0",
-    "oxide-dealerships": "1.0.4",
+    "oxide-dealerships": "1.0.5",
     "oxide-dispatch": "1.4.0",
     "oxide-drugselling": "2.0.0",
     "oxide-ems": "1.1.0",

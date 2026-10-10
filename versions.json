@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-10T19:44:46.457Z",
+  "generated": "2026-10-10T19:45:03.108Z",
   "resources": {
     "oxide-animalcontroljob": "1.6.0",
     "oxide-baitcar": "1.0.3",
@@ -32,7 +32,7 @@
     "oxide-tablet": "1.1.0",
     "oxide-vending": "1.6.0",
     "oxide-weaponprinting": "1.1.4",
-    "oxide-weather": "1.1.0",
+    "oxide-weather": "1.1.1",
     "oxide-weed": "1.6.0"
   }
 }

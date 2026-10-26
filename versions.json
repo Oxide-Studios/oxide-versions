@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-26T18:48:42.400Z",
+  "generated": "2026-10-26T18:49:03.191Z",
   "resources": {
     "oxide-animalcontroljob": "1.7.2",
     "oxide-baitcar": "1.0.3",
@@ -12,7 +12,7 @@
     "oxide-dispatch": "1.5.0",
     "oxide-drugselling": "2.1.0",
     "oxide-ems": "1.2.2",
-    "oxide-fire": "1.0.1",
+    "oxide-fire": "1.0.2",
     "oxide-gangs": "1.0.0",
     "oxide-glitch": "1.0.1",
     "oxide-hookr": "1.0.0",

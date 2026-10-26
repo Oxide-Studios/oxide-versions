@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-26T19:05:43.509Z",
+  "generated": "2026-10-26T19:06:08.778Z",
   "resources": {
     "oxide-animalcontroljob": "1.7.3",
     "oxide-baitcar": "1.0.3",
@@ -24,7 +24,7 @@
     "oxide-multichar": "2.0.4",
     "oxide-newspaperjob": "1.5.2",
     "oxide-pestcontroljob": "1.1.2",
-    "oxide-phone": "1.1.0",
+    "oxide-phone": "1.1.1",
     "oxide-pills": "1.1.0",
     "oxide-pizzajob": "1.6.2",
     "oxide-police": "1.14.0",

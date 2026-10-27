@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.4.2] - 2026-10-27
+
+### Fixed
+- Shops whose map blip was hidden in `/shop admin`, and shops set to on-duty only, no longer lose that setting when the server restarts.
+- If one of those shops was edited or renamed after a restart on an older version, the setting may already have been saved as off. After updating, open each affected shop once in `/shop admin` and check **Map Blip** and **On Duty Only**.
+
 ## [1.4.1] - 2026-10-26
 
 ### Changed

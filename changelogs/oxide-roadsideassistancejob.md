@@ -1,5 +1,10 @@
 # Changelog
 
+## [1.7.3] - 2026-11-01
+
+### Fixed
+- The server console no longer warns that `flatbed3.ytd` is oversized. The flatbed truck's texture file now uses 10 MiB of memory instead of 160 MiB, and the truck looks the same in game.
+
 ## [1.7.2] - 2026-10-26
 
 ### Changed

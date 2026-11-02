@@ -1,5 +1,54 @@
 # Changelog
 
+## [2.0.0] - 2026-11-02
+
+### Added
+- **Print queue and filament spool.** Load filament onto a printer's spool and queue several parts. The printer works through them while you're away, and finished parts wait in its tray. The Storage Drive upgrade sets how many jobs a printer holds.
+- **Three filament tiers: Basic, Reinforced and Carbon.** The tier caps the quality and durability of what you print with it.
+- **Calibration minigame.** Level the bed and heat the nozzle before printing. Your score is the quality of every part you queue on that visit.
+- **Print failures.** A print can warp or turn to spaghetti. The chance is shown before you queue, and the Cooling Fan upgrade lowers it. Fix it at the printer to carry on, or throw it away and lose its filament.
+- **One-time USBs** (`printer_usb_once`) load a blueprint for a single visit to a printer.
+- **New printer and weapon bench models.** The printer's light strip shows its state from a distance, its screen shows live progress to nearby players, and parts grow layer by layer on the build plate.
+- **Assembly minigame at the bench.** Pick each part, press its pins home, then tighten the fasteners. Your score and the parts' quality set the weapon's quality, with no hidden rolls.
+- **Attachments and finishes.** Print a suppressor, extended or drum magazine, flashlight, scope or grip and fit it at the bench. A finish kit gives a weapon one of 8 tints or 11 Mk II liveries. Only 3D-printed weapons take them.
+- **Repair and cleaning kits.** Restore a printed weapon's durability, or stop it jamming for its next 150 shots.
+- **Filament recycler.** A placeable shredder that turns junk items into Basic filament.
+- **Item printing is out of preview.** Items print in one go, or in parts you put together at the bench (the suppressor and drum magazine ship that way).
+- **Progression.** Mastery for each weapon class (a quality bonus and faster prints), daily and weekly goals, milestones, and a maker's mark on the weapons you build. `/weaponprinting stats` opens your Gunsmith profile.
+- **Gunsmith app** for Oxide Phone and Oxide Tablet: your profile, live printer status, blueprints and two home-screen widgets.
+- **Gunsmith Supply store and the app's dark web**, both optional and off by default.
+- **Buyers.** NPCs pay cash for printed weapons, priced on class, quality, attachments, finish and condition.
+- **Police risk.** On-duty police can seize placed printers, benches and recyclers, and long prints in public places can send a dispatch alert. The printer menu shows the risk.
+- **In-game settings.** `/weaponprinting settings` changes 30 settings live, in 23 sections, and saves them in the database.
+- **Oxide HUD support.** Move the step header and controls with the HUD's layout editor (needs o-link 1.12.1 or newer).
+
+### Changed
+- **Admin commands are now subcommands of `/weaponprinting`, with no old aliases.** `/printer_kit`, `/bench_kit`, `/table_kit` and `/wp_testkit` become `kit` or `give`; `/upgrade_kit` becomes `giveupgrade`; `/give_parts` becomes `giveparts`; `/givewepblueprint` becomes `giveusb`; `/wp_setlevel`, `/wp_setxp` and `/wp_info` become `setlevel`, `setxp` and `info`. New: `giveusbonce`, `givefilament`, `givefinish`, `place`, `reset`, `clearmark`, `settings`. See `docs/ADMIN.md`.
+- **Quality is earned, not rolled.** It comes from calibration, the filament tier, the assembly score and class mastery. The random quality band and the 10% "bad luck" penalty are gone.
+- **Printers take filament from their spool,** not from your inventory.
+- **Status cards over printers** replace the floating labels and the **H** key.
+- **Database tables are created and updated automatically** when the resource starts. `sql/migrate_2_0_0.sql` is there for hosts that can't alter tables.
+- **A printer can't be placed within `Config.PrinterSpacing` (0.5 m) of another.**
+- **Removed config keys:** `Config.Camera`, `Config.Labels`, `Config.GhostPropDefaults`, `Config.BenchModel`, `Config.BenchCamera`, `Config.BenchWeaponOffset`, `Config.CraftAnimation`, `Config.Progression.badLuckChance` and `badLuckPenalty`, and the `offset` in each `Config.GhostProps` entry.
+
+### Fixed
+- A printed weapon's wear no longer erases its quality, ghost-gun status and other details on ox_inventory and qb-inventory.
+- Players can no longer install upgrades on a printer they don't own (`Config.RequireOwnership`).
+- Printed weapons no longer get a serial number on qb-inventory.
+
+### Documentation
+- Every guide is rewritten for 2.0. `docs/INSTALLATION.md` has the full 63-item list and an "Upgrading from 1.x" section, and `itemimages/ox_inventory_items.lua` is ready to paste into ox_inventory.
+
+### Migration Guide
+- **Back up your database,** then replace the resource folder.
+- **Don't copy your old config files over the new ones.** Re-apply your changes by hand before the first start. On that start the gameplay settings are copied into your database; after it, change them in `/weaponprinting settings`, because editing those values in the config files no longer does anything.
+- **Register the 13 new items and copy their icons** from `itemimages/`: `printer_filament_reinforced`, `printer_filament_carbon`, `printer_usb_once`, `printed_suppressor`, `printed_extended_mag`, `printed_drum_mag`, `printed_flashlight`, `printed_scope`, `printed_grip`, `printed_finish_kit`, `printed_repair_kit`, `printed_cleaning_kit`, `filament_recycler`. On QBCore, also set the 30 printed parts and `3d_printer` to `unique = true`. On ESX with ox_inventory, paste from `itemimages/ox_inventory_items.lua`.
+- **The first start updates the database once** and records it in `weaponprinting_migrations`. Placed equipment, upgrades, stored blueprints, and running or uncollected prints carry over. `printer_filament` becomes Basic filament, and parts printed in 1.x count as quality 50.
+- **Player progress carries over** the first time each character loads. Level, XP and totals are kept, the old lifetime quality bonus becomes the least bonus in every class, and milestones already reached are marked done without paying again.
+- **The Gunsmith Supply and the dark web start off.** Turn them on under **Economy > Store** and **Economy > Dark Web** in `/weaponprinting settings`. A server that has already saved its settings keeps the values it saved.
+- **Update any staff notes or scripts** that use the old admin commands.
+- **Tell players** to load filament onto a printer's spool before queueing.
+
 ## [1.1.4] - 2026-09-02
 
 ### Fixed

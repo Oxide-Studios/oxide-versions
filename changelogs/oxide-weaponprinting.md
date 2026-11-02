@@ -24,7 +24,7 @@
 
 ### Changed
 - **Admin commands are now subcommands of `/weaponprinting`, with no old aliases.** `/printer_kit`, `/bench_kit`, `/table_kit` and `/wp_testkit` become `kit` or `give`; `/upgrade_kit` becomes `giveupgrade`; `/give_parts` becomes `giveparts`; `/givewepblueprint` becomes `giveusb`; `/wp_setlevel`, `/wp_setxp` and `/wp_info` become `setlevel`, `setxp` and `info`. New: `giveusbonce`, `givefilament`, `givefinish`, `place`, `reset`, `clearmark`, `settings`. See `docs/ADMIN.md`.
-- **Quality is earned, not rolled.** It comes from calibration, the filament tier, the assembly score and class mastery. The random quality band and the 10% "bad luck" penalty are gone.
+- **Quality is shown before you build.** The bench card shows the lowest and highest quality a build can come out at before you start: a level roll inside a band set by how far your level is above the recipe's, blended with the parts' quality (calibration and filament tier), the assembly score and your mastery bonus. The result card shows the roll. The hidden 10% "bad luck" penalty is gone.
 - **Printers take filament from their spool,** not from your inventory.
 - **Status cards over printers** replace the floating labels and the **H** key.
 - **Database tables are created and updated automatically** when the resource starts. `sql/migrate_2_0_0.sql` is there for hosts that can't alter tables.

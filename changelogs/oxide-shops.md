@@ -1,5 +1,15 @@
 # Changelog
 
+## [1.5.0] - 2026-11-05
+
+### Added
+- **Discord transaction log** - With the free oxide-logger resource, every purchase, pawn sale, shop purchase and resale, till deposit and withdrawal, wholesale order and auction step can be posted to a Discord channel through its `transactions` webhook. See "Audit Webhooks" in `docs/CONFIGURATION.md`.
+
+### Fixed
+- Buying a shop or depositing into a shop till no longer goes through when the framework refuses to take the money.
+- A till withdrawal the framework can't pay out puts the money back in the till and says "Payment failed".
+- A shop resale refund that can't be given back is logged with the player and amount, and every admin online is alerted to return it by hand.
+
 ## [1.4.2] - 2026-10-27
 
 ### Fixed

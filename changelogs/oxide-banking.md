@@ -2,6 +2,15 @@
 
 All notable changes to Oxide Banking will be documented in this file.
 
+## [2.3.0] - 2026-11-05
+
+### Added
+- **Discord transaction log** - With the free oxide-logger resource, every completed deposit, withdrawal, transfer, `/givecash`, invoice payment and loan payment can be posted to a Discord channel through its `transactions` webhook. See "Audit Webhooks" in `docs/CONFIGURATION.md`.
+
+### Fixed
+- Reliability fixes for recurring payments.
+- Phone and tablet text no longer says ATMs take deposits. Deposits are made at a bank, and withdrawals at a bank or an ATM.
+
 ## [2.2.1] - 2026-10-23
 
 ### Changed

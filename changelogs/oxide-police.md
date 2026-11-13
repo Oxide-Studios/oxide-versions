@@ -1,5 +1,23 @@
 # Changelog
 
+## [1.15.1] - 2026-11-13
+
+### Fixed
+- Items taken at booking come back on release again. The jail locker was being read before it had been set up after any server restart, so the give-back silently returned nothing.
+- A prisoner released while offline gets their items back the next time they log in.
+- A failed give-back, or a locker that can't be read, now writes to the server console instead of passing silently.
+- Shrinking **Prisoner locker** → **Slots** no longer drops items sitting above the new size.
+- Releasing and re-jailing within a second or two no longer hands a serving prisoner their gear back.
+
+### Changed
+- **Reduce time while offline** now does what it says. With it off (the default), sentences only count down while the prisoner is online; before, every sentence ran down whether the prisoner was online or not.
+
+### Added
+- `CreateSystemCase`, `AddSystemCaseEntry` and `AddSystemCaseEvidence` exports let another resource open an MDT case with no officer behind it and log registry evidence against it. See `docs/EXPORTS.md`.
+
+### Documentation
+- `/police addtime` and `/police setsentence` are documented as working on offline prisoners. Both take a server ID, so they only work on players who are online.
+
 ## [1.15.0] - 2026-10-26
 
 ### Added

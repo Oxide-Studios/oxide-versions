@@ -1,5 +1,36 @@
 # Changelog
 
+## [1.15.2] - 2026-11-13
+
+### Fixed
+- **Items taken at jail time are no longer lost in "Store inventory in custody locker" mode.** On some inventories, for example ak47_qb_inventory on QBCore, the jail locker could not hold items: everything was taken from the prisoner at jail time and nothing came back on release.
+- Items taken at jail time are now kept by oxide-police in its own database table instead of an inventory stash, so the locker no longer depends on what your inventory supports.
+- Each item is saved before it is taken. If it can't be saved, or the inventory won't let it go, the prisoner keeps it.
+- On release, each item comes back with its item data (for example a weapon's serial and ammo), in its old slot when that slot is still free and your inventory lets a script pick the slot.
+- oxide-police checks that the player really holds each returned item, because some inventories report an item as added when it did not fit.
+- An item that doesn't fit stays saved. The player is told to make room, the server console logs `could not return seized item, kept for a retry`, and the item is offered again every **Return retry** seconds (60 by default) while they are online, and again at their next login.
+- Items still owed to online players are handed back shortly after oxide-police starts, so a restart during a sentence or a give-back loses nothing.
+- `sql/reset.sql` now drops every police table. It missed `police_uniforms`, `police_bodycam_recordings`, `police_weapon_registry` and the new `police_custody_items`.
+
+### Added
+- **Return retry** in `/police settings` → Custody & Prison → Custody (`Config.Custody.ReturnRetrySeconds`, default `60`): how often, in seconds, a released player is offered the items their inventory had no room for.
+
+### Changed
+- **Prisoner locker** in `/police settings` is now called **Old locker stash**. It is only used to hand back items to prisoners who were jailed before this update.
+
+### Documentation
+- New **Items Not Returned After Jail** section in `docs/TROUBLESHOOTING.md`. `docs/FEATURES.md` and `docs/CONFIGURATION.md` describe how items taken at jail time are kept and returned.
+- `PRODUCT.md` lists the new table, and the trunk loadout notes in `docs/CONFIGURATION.md` and `docs/INSTALLATION.md` list the supported frameworks and inventories correctly.
+
+### When you update
+- There is nothing to import. The new `police_custody_items` table is created automatically when oxide-police starts.
+- The database user still needs permission to create tables, as it has since 1.13.0. Without it, oxide-police writes `database tables could not be created` to the server console and stays offline. Give that user permission to create tables; see `docs/INSTALLATION.md`, step 4.
+- A prisoner who is already in jail when you update gets back what the old jail locker still holds when they are released, the same way 1.15.1 did.
+- Items that were already lost before the update can't be brought back.
+- On ak47_qb_inventory, also update `o-link` to 1.13.2 or newer. It makes inventory stashes work on that inventory, which police storage such as the evidence locker uses.
+- If you keep your own copy of `shared/config/custody.lua`, you can add `Config.Custody.ReturnRetrySeconds = 60`; without it, 60 seconds is used. If you keep your own `locales/en.json`, add the `custody.items_not_returned` key under `custody`.
+- Restart the whole server after updating; new files are added.
+
 ## [1.15.1] - 2026-11-13
 
 ### Fixed

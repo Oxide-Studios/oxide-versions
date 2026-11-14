@@ -1,5 +1,37 @@
 # Changelog
 
+## [1.1.0] - 2026-11-14
+
+### Fixed
+- **Dashcam clips now reach Discord.** With `Config.Recording.provider = 'discord'`, clips are posted through oxide-police's body cam webhook and saved in MDT **Video Storage**. Long clips no longer get lost on the way to the server.
+- Discord clips keep playing after Discord's links expire.
+- A clip that fails to upload stays in the prompt, so **UPLOAD TO MDT** can send it again.
+- The default `Config.Recording.discordMaxBytes` is now 20 MiB, Discord's default limit per file.
+
+### Added
+- With Oxide HUD, the remote is a HUD panel that players can move in `/hud`, and the HUD stays up while the remote is open. Without a HUD the remote stays where it was.
+- With Oxide HUD, the HUD hides while the dashcam feed or the admin dashcam tuner fills the screen.
+- The remote scales with the screen height, so it fits above Oxide HUD's speedometer down to 720p. At 1080p it looks as before.
+- `items/ox_inventory_items.lua` holds paste-ready ox_inventory entries for the bait car items; `docs/INSTALLATION.md` points to it.
+
+### Changed
+- The server keeps a clip the moment it stops. The plate must be a bait car deployed now or ended up to 15 seconds before, and the upload then has 30 minutes.
+- A clip that is refused or lost tells the officer why and writes one console line.
+- One console line at start says which providers work with the installed oxide-police.
+- With an oxide-police that has no `GetVideoUploadInfo`, Fivemanage clips save as before and Discord clips are refused with a notice.
+- If oxide-police stops while a clip is being sent, the officer is told and can send it again once oxide-police is back.
+- The upload result now shows through your server's notifications instead of the recorder's own message.
+
+### Documentation
+- `docs/INSTALLATION.md` and `docs/TROUBLESHOOTING.md` describe o-link's alerts when no dispatch resource is installed, and no longer list ps-dispatch and cd_dispatch as able to take the bait car alert.
+- `docs/ADMIN.md`: the dashcam tuner cancels with ESC, and E and Q move the offset up and down.
+- `docs/CONFIGURATION.md`, `docs/FEATURES.md`, `docs/EXPORTS.md` and `docs/TROUBLESHOOTING.md` cover Discord clips, their limits and console lines.
+
+### When you update
+- Discord clips need oxide-police 1.16.0 or newer. Fivemanage clips work with oxide-police 1.15.2 too.
+- A kept `shared/config.lua` with `discordMaxBytes = 25 * 1024 * 1024` is read as 20 MiB, with a console line at start. If you keep your own `locales/en.json`, add the new `recording` keys and `hud.panel_remote`.
+- Restart the whole server; new files are added.
+
 ## [1.0.3] - 2026-07-26
 
 ### Changed

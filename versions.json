@@ -1,8 +1,8 @@
 {
-  "generated": "2026-11-14T04:32:20.968Z",
+  "generated": "2026-11-14T05:04:23.687Z",
   "resources": {
     "oxide-animalcontroljob": "1.7.3",
-    "oxide-baitcar": "1.0.3",
+    "oxide-baitcar": "1.1.0",
     "oxide-banking": "2.3.0",
     "oxide-blackmarket": "1.9.4",
     "oxide-carplayer": "2.0.0",

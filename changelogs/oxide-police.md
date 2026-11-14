@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.16.1] - 2026-11-14
+
+### Fixed
+- **Body cam and CCTV views keep their field of view after a settings save.** Saving a change under `/police settings` → **Devices & Comms** → **Bodycam** or **CCTV** no longer makes the next view open zoomed all the way in, and the CCTV **Maximum view distance** is kept as well.
+
+### Documentation
+- `docs/CONFIGURATION.md` and `docs/INSTALLATION.md` say the FiveManage key is needed for body cam clips only while the body cam **Provider** is **Fivemanage**. `README.md` names QBCore, Qbox and ESX, and `docs/CONFIGURATION.md` and `docs/TROUBLESHOOTING.md` explain that `Config.Hooks.MugshotSendPhoto` runs after a mugshot has uploaded and does not change where it uploads.
+- `docs/BUILDING-A-DEPARTMENT.md` says CCTV and other settings are changed in `/police settings` after the first start, and `PRODUCT.md` names the `/police admin`, `/police bodycams` and `/police cameras` commands.
+
+### When you update
+- Restart the whole server after updating. The fix is in client files only, and no files are added.
+
 ## [1.16.0] - 2026-11-13
 
 ### Fixed

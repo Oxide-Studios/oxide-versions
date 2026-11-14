@@ -1,5 +1,42 @@
 # Changelog
 
+## [1.16.0] - 2026-11-13
+
+### Fixed
+- **Body cam clips now reach your Discord webhook.** With **Provider** set to **Discord**, each clip is posted as one message with its video and thumbnail and saved in MDT **Video Storage**. Long clips no longer get lost on the way to the server.
+- Discord clips keep playing in **Video Storage** after Discord's links expire: the MDT asks Discord for fresh links.
+- A clip whose Discord message was deleted says **This clip is no longer on Discord: its message was deleted.** and is not asked for again.
+- A clip posted with a webhook you have since replaced says its link cannot be renewed and that it is still in the Discord channel.
+- The default Discord size limit is now 20 MiB, Discord's default limit per file.
+- A clip that is not saved now tells the watcher why, and the server console says the same in one line.
+- A mugshot post the webhook refuses writes `mugshot was not posted to the webhook` with the HTTP status to the console.
+
+### Changed
+- **Discord webhooks are kept on the server.** The body cam and mugshot webhooks are set only in `/police settings` and are never sent to players' games. The field shows **Saved on the server**; paste a new one to replace it, or clear it.
+- A webhook written in a config file is named in the console at start.
+- The server takes each clip's wearer, recording officer and department from its own records, and holds its start time and length to the time the feed was open and the **Maximum duration**. A clip is kept when it stops while the feed is open or up to 15 seconds after.
+- Switching a body cam off, or the wearer leaving, closes every watcher's feed with **Feed ended: the body cam was switched off**. The clip still saves.
+- Posts to one webhook go one at a time and wait as long as Discord asks, up to 10 minutes. Discord errors and network failures are tried three times.
+- Limits: 20 clips per officer in 10 minutes; for Discord clips, 10 arriving at the server at once and 96 MiB of clip data held by the server.
+- **Discord maximum bytes** takes up to 50 MiB, and the menu refuses a **Video bitrate** and **Maximum duration** whose clips could exceed it.
+- When oxide-police stops with clips on their way to Discord, each watcher is told and the console gives the count.
+- Fivemanage body cam clips ask for upload links at most 3 times.
+- For developers: `SaveVideoRecording` ignores `metadata.discord`. A Discord row needs a video this server posted through `UploadVideoToDiscord` for the same player, saved within 10 minutes. `UploadVideoToDiscord` takes an optional `sha256` and returns `false` and a reason on failure.
+
+### Added
+- Exports `GetVideoUploadInfo()` and `GetVideoRecorder(source)`, and the server event `oxide:police:server:video:uploadDiscord`, for other recorders such as oxide-baitcar.
+- Convar `oxide_police_allow_local_webhook` (off by default). It allows a webhook relay on the game server's own machine.
+
+### Documentation
+- `docs/CONFIGURATION.md` covers body cam recording to Discord and its limits; `docs/TROUBLESHOOTING.md` lists the body cam clip notices and console lines; `docs/EXPORTS.md` covers the video exports. `docs/FEATURES.md`, `docs/BUILDING-A-DEPARTMENT.md` and `docs/INSTALLATION.md` are updated.
+
+### When you update
+- A body cam or mugshot webhook already saved in `/police settings` keeps working. There is nothing to do.
+- A saved Discord size limit of exactly 25 MiB (`26214400`) moves to 20 MiB once, with one console line. Any other value stays; a value above 50 MiB is used as 50 MiB, with a console line at start.
+- If you keep your own `locales/en.json`, add the new keys under `bodycam`, `settings_ui`, `nui.bodycam_overlay` and `nui.mdt.videos`.
+- Bait car Discord clips need this oxide-police.
+- Restart the whole server after updating; `server/discord_post.js` is new.
+
 ## [1.15.2] - 2026-11-13
 
 ### Fixed

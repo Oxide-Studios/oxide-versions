@@ -1,5 +1,24 @@
 # Changelog
 
+## [1.7.0] - 2026-11-16
+
+### Added
+- French translation (`locales/fr.json`).
+
+### Changed
+- The Vehicle page in `/pizza settings` explains that each level's own Vehicle is used before Model, and that every shipped level sets `pizzaboy`.
+
+### Fixed
+- A level whose Vehicle is blank in Progression > Levels now gets the Model under Vehicle.
+- "Your company vehicle is parked nearby." only shows when the vehicle spawned.
+- The missing-model warning for admins names the page to fix it: `/pizza settings > Compatibility > Model replacements`.
+
+### Documentation
+- The docs explain which vehicle a driver gets, Model replacements, and that `pizzaboy` needs game build 3258 or newer.
+
+### Migration Guide
+- No SQL to run. Saved settings are unchanged, so shipped levels still issue `pizzaboy`. To give drivers another vehicle, clear or change each level's Vehicle, or add a Model replacement for `pizzaboy`.
+
 ## [1.6.2] - 2026-10-26
 
 ### Changed

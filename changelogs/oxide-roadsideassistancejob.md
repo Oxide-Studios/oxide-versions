@@ -1,5 +1,20 @@
 # Changelog
 
+## [1.8.0] - 2026-11-16
+
+### Added
+- French translation (`locales/fr.json`).
+
+### Fixed
+- The flatbed truck no longer tilts or flips when it spawns at the tow yard.
+- The missing-model warning for admins names the page to fix it: `/roadside settings > Compatibility > Model replacements`.
+
+### Documentation
+- Model replacements documented; corrections across the docs.
+
+### Migration Guide
+- No SQL to run and nothing to change.
+
 ## [1.7.3] - 2026-11-01
 
 ### Fixed

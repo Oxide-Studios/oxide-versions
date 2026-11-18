@@ -1,5 +1,22 @@
 # Changelog
 
+## [2.2.1] - 2026-11-18
+
+### Changed
+- A cocaine brick pays sale XP for the 10 cocaine pressed into it: 150 XP with the shipped settings instead of 15. Baggies still count as one.
+
+### Fixed
+- The missing-model warning, both the admin notification and the F8 console line, names the settings page that fixes it: `/drugselling settings > Compatibility > Model swaps`.
+- Less client CPU when targeting street peds: checking whether you carry anything to sell reads your inventory once instead of once per drug item.
+
+### Documentation
+- Configuration and features cover the cocaine brick's sale XP and the page the missing-model warning names.
+- Corrections across configuration, features, installation, troubleshooting and the evidence bridge guide: settings search, client price tolerance, grade colours, heat, the TrapFone keypad, the meth price warning, and when police can read a seized phone.
+
+### Migration Guide
+- `Config.Drugs` is file-only. If you customized `shared/config/drugs.lua`, add `xpUnits = 10` to the `cocaine_brick` row in the `cocaine` entry. Without it a brick keeps paying 15 XP.
+- No SQL, new items or locale keys. Restart oxide-drugselling.
+
 ## [2.2.0] - 2026-10-27
 
 ### Added

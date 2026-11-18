@@ -1,5 +1,23 @@
 # Changelog
 
+## [2.1.0] - 2026-11-18
+
+### Added
+- French translation (`locales/fr.json`). To use it, add `setr ox:locale "fr"` to your `server.cfg`.
+- **Compatibility → Model replacements** in `/meth settings`: use another model in place of one your game build doesn't have. The missing-model warning, both the admin notification and the F8 console line, names the model and this page.
+
+### Fixed
+- Pressing E on a spot inside a blocked placement zone, or outside every allowed zone, now says why ("Can't place items in safe zones" or "You can only place equipment inside a designated area") instead of doing nothing behind the red outline.
+- A supplier set with Place in `/meth settings` now stands on the ground instead of buried to the waist. A supplier placed before this needs placing again.
+- Lower client CPU away from labs: the lab smell check only looks up the player's job when a lab giving off fumes is close.
+
+### Documentation
+- Corrected: meth can be used in a vehicle, starting a cook burns its propane before any pouring, which items Oxide Weed and Oxide Cocaine already define, and the sell-panel fields `PriceFor` returns.
+- Translation, model replacement and placement-zone sections updated.
+
+### Migration Guide
+- No SQL to run. Model replacements ships empty, so nothing changes until you add a row.
+
 ## [2.0.0] - 2026-10-27
 
 ### Added

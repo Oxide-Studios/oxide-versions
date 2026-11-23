@@ -1,5 +1,23 @@
 # Changelog
 
+## [1.7.0] - 2026-11-23
+
+### Added
+- Other resources can change an open alert with the new `UpdateAlert` export: move it to a new position, or change its priority, title, message, street or plate. Responders' alert popups, Dispatch Hub entries and map blips follow, so one alert can track a moving vehicle. Called through o-link (`olink.dispatch.UpdateAlert`), it needs `o-link` 1.14.0 or newer. See `docs/EXPORTS.md`.
+- French translation (`locales/fr.json`). To use it, add `setr ox:locale "fr"` to your `server.cfg`.
+
+### Fixed
+- On ESX, the client-side police alert relay now stays off unless `clientPoliceAlert = true` in `shared/config/compat.lua`. Before, the server accepted the relay even with the setting off, so a modified client could create police alerts.
+- Stopping `oxide-dispatch` now removes its Dispatch entry from the radial menu. Before, the entry stayed and did nothing. It comes back when the resource starts again.
+
+### Documentation
+- All guides were checked against the code and corrected: the database user needs CREATE permission, the UI ships prebuilt in `web/dist`, o-link version requirements, and the o-link call examples.
+- `docs/EXPORTS.md`: the `UpdateAlert` export and its o-link call. Links to the o-link adapter files point at the public o-link repository.
+- `docs/ESX_INSTALL.md`: the Oxide Police ESX job sync step covers `/police settings`, and the admin command is `/police admin`.
+- `docs/INSTALLATION.md` and `docs/FEATURES.md`: Oxide HUD support needs `o-link` 1.12.1 or newer.
+- `docs/CONFIGURATION.md`: "Shared map mode" links to o-link's public maps guide.
+- `PRODUCT.md`: the supported frameworks are QBCore, Qbox and ESX.
+
 ## [1.6.0] - 2026-10-26
 
 ### Added

@@ -1,9 +1,60 @@
 # Changelog
 
+## [1.4.0] - 2026-11-24
+
+### Added
+- Perks at levels 2, 4, 6, 8, 9 and 10: at least one more leaf from wild bushes, faster soaks in drums you load (15%, then about 23%), cuts that take less purity from your crack (25%, then 40%), and +3 purity on every cook at level 10. Edit them under **Players → Cocaine Perks** in `/cocaine settings`.
+- Master ranks past level 10: every 4,000 XP is a rank, up to five (Master Refiner I at 15,000 XP to V at 31,000). Each rank picks one perk from a pool of six in the profile's **Ranks** tab; a respec clears every pick for $25,000. Tune them under **Players → Master Ranks**.
+- Cut mastery: a track for every cut and one for cocaine cooks (**Powder**). **Familiar** at 5 cooks (50 XP, and the profile shows the cut's purity and yield), **Skilled** at 15 (100 XP, +1 purity on cooks with that cut), **Master** at 40 (250 XP, +1 more purity, a badge). The first cook on a track pays 50 XP, for up to 3 tracks a day. Tune it under **Players → Cut Mastery**.
+- Daily and weekly goals: 3 a day and 2 a week, drawn for each player's level, with targets and XP growing with the level and each master rank. A player can swap one daily goal a day. Edit the pool under **Players → Cocaine Goals**.
+- A journal: each step's first time pays XP once, and beating your best purity by 5 pays 25 XP (**Players → Cocaine XP → Cocaine journal**).
+- Brick stamps: a level 10 cook with **Master** on a cut or Powder registers one stamp, a name and a symbol, for $50,000. Bricks they press carry it; bags never do. Street sales of those bricks through Oxide Drug Selling 2.3.0 build the stamp's reputation, more for purer bricks, and add oxide-cocaine's `PriceFor` to Oxide Drug Selling's cocaine pricing to let a famous stamp's bricks sell for up to 15% more (see `docs/CONFIGURATION.md`). Tune them under **Players → Brick Stamps**.
+- The profile as the **Refiner** app on oxide-phone and oxide-tablet (app id `cocaine_profile`), with a level widget and a goals widget. Turn it off, per device or without widgets, under **Players → Cocaine App**.
+- A level-up banner and "+XP" pop-ups. On Oxide HUD they and the stage card can be moved or hidden in `/hud`. Cook XP follows the batch's purity: half for Dirty, one and a half times for Pure.
+- Two premium cuts, **Procaine** (level 8) and **Tetracaine** (level 9). Cuts can be added and removed under **Production → Adulterants**.
+- The extractor drum: tip in the mash and pour in kerosene, then drain it at the tap one bucket at a time. How cleanly a bucket drains sets its grade, which raises or lowers the purity of cooks that use it. A drum holds up to 3 buckets.
+- Weather can speed up wild bush regrowth in rain and slow it in cold or heat. Off by default: **Environment → Weather**. Needs Oxide Weather through o-link. With Oxide Weather 1.1.2 or older, the cover check can fail when nearby players run the game at a high frame rate, and bushes then regrow at the normal speed. A newer Oxide Weather fixes it.
+- Gang influence through oxide-gangs for cooks and pressed bricks (**Core → Gang Activity**, off by default), and a skills mirror that adds every cocaine XP grant to a skill of your skill system (**Players → Cocaine XP → Skills mirror**).
+- French translation (`locales/fr.json`): add `setr ox:locale "fr"` to your `server.cfg`. Cut names, purity grades, item descriptions and the police alert follow the language, and numbers are grouped the French way. Names you changed in the settings show as you wrote them.
+- `items/ox_inventory_items.lua`: every item, ready to paste into ox_inventory.
+- Admin commands: `/cocaine setxp`, `resetjournal`, `setmastery`, `resetgoals`, `setrank`, `resetpicks`, `setstamp`, `clearstamp` and `setrep` (see `docs/ADMIN.md`).
+- For developers: the `GetPlayerRank` and `PriceFor` exports and the `oxide-cocaine:server:levelUp` and `oxide-cocaine:server:rankUp` events; `GetPlayerProgression` now lists every unlock and returns the journal. See `docs/EXPORTS.md`.
+
+### Changed
+- `/cocaine stats` opens the profile (Overview, Mastery, Goals, Ranks) instead of the stats card.
+- The brick press pays 80 XP (was 30), the same as bagging the 10 cocaine it takes.
+- "Made" counts finished products only: each bag and each brick. Totals already saved stay.
+- The level table must start at level 1 with 0 XP and climb, and every level needs a purity penalty. A table saved before keeps working until you edit its levels.
+- `/cocaine setlevel` shows the level-up banner when it raises a level.
+- The **Start Cook** button keeps the HUD on screen.
+
+### Fixed
+- A brick that doesn't fit in your inventory gives the 10 cocaine back at the brick's purity. Before, they came back without a grade.
+- Police alerts: a station's cooldown starts only when the alert roll passes, so a failed roll no longer blocks it.
+- A usage whitelist rule that lists only gangs now requires the gang; before, it let everyone through.
+- Saved settings are never replaced by the file defaults on start, and numbers in the settings menu no longer show long decimals.
+- The settings menu: ESC that cancels a world picker no longer closes it, a refused save keeps the old value and says why, a failed reset shows an error, its text is translated, and it closes when the character unloads.
+- A function left in a customised config no longer stops the settings from loading.
+- Edits to `Config.SceneAnims` in `shared/config.lua` take effect again.
+- The Cocaine Manual's level chart listed the wrong unlocks.
+- A player's progression is reloaded after they log out or disconnect, on every framework.
+
+### Documentation
+- New and rewritten sections in `docs/` for every feature above; `docs/INSTALLATION.md` points to `items/ox_inventory_items.lua`.
+- The README, the product page and every guide now match this version: the two file-only switches, all ten cuts and tables, every command, export and event, and the update steps.
+- The 1.3.0 notes said every stage used a gang territory's `yield` modifier. Only the cook does, and those notes now say so.
+
+### Migration Guide
+- Replace the folder, then restart the whole server. This update adds files, and `restart oxide-cocaine` alone doesn't load them.
+- Five tables are created on that start, with no SQL to run: `cocaine_cook`, `cocaine_mastery`, `cocaine_goals`, `cocaine_ranks` and `cocaine_stamps` (also in `sql/install.sql`). `cocaine_container_state` gains a `buckets` column on the same start (also `sql/migrations/extractor_buckets.sql`).
+- Register the `procaine` and `tetracaine` items in your inventory (`docs/INSTALLATION.md`; icons in `items/`). Your saved cut list gains both once.
+- A saved brick press reward still at 30 moves to 80 once. Values you changed stay.
+- Update Oxide Drug Selling to 2.3.0 at the same time for stamped bricks.
+
 ## [1.3.0] - 2026-09-02
 
 ### Added
-- **Gang territory affects production** — every production stage inside a gang territory uses that territory's `yield` modifier for its output, extractors use its `growth` modifier for soak time, and wild coca plants there regrow faster by the same modifier. Needs the oxide-gangs territory system; modifiers are set per territory in `oxide-gangs/shared/config/territories.lua`. Without it (or outside any territory) nothing changes.
+- **Gang territory affects production** — the cook inside a gang territory uses that territory's `yield` modifier for its output (the other stages don't), extractors use its `growth` modifier for soak time, and wild coca plants there regrow faster by the same modifier. Needs the oxide-gangs territory system; modifiers are set per territory in `oxide-gangs/shared/config/territories.lua`. Without it (or outside any territory) nothing changes.
 - A stage never returns nothing: even on a territory with a below-1.0 yield modifier you always get at least one unit for your inputs.
 
 ### Fixed

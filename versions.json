@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-23T15:05:48.480Z",
+  "generated": "2026-11-24T08:44:14.184Z",
   "resources": {
     "oxide-animalcontroljob": "1.7.3",
     "oxide-baitcar": "1.1.0",
@@ -7,7 +7,7 @@
     "oxide-blackmarket": "1.9.4",
     "oxide-carplayer": "2.0.0",
     "oxide-chat": "2.1.0",
-    "oxide-cocaine": "1.3.0",
+    "oxide-cocaine": "1.4.0",
     "oxide-dealerships": "1.1.0",
     "oxide-dice": "1.0.0",
     "oxide-dispatch": "1.7.0",

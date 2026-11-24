@@ -1,5 +1,27 @@
 # Changelog
 
+## [2.3.0] - 2026-11-24
+
+### Added
+- French translation (`locales/fr.json`): add `setr ox:locale "fr"` to your `server.cfg`. The sell menu's title, the grades (as oxide-cocaine and oxide-weed print them; meth keeps its grade names), the cocaine, weed, meth and pills item and drug names, the price bonus chips, the phone's client types, hours, reputation tiers and order words, and the headings of a seized phone's report are in French too. A text you changed in the settings or in `drugs.lua` shows as you wrote it.
+- Stamped bricks from oxide-cocaine 1.4.0's brick stamps sell on a line of their own, under the stamp's name, and their sales build the stamp's reputation. Plain bricks and bags sell as before. To let reputation raise a stamp's brick price, add oxide-cocaine's `PriceFor` to the cocaine pricing (`docs/CONFIGURATION.md`, Pricing stamped bricks).
+- An item row in `shared/config/drugs.lua` can set its own `metaKeyFormat`, which replaces its drug's for that item.
+
+### Changed
+- A cocaine brick sale's `metaKey`, as `Config.OnDrugSold`, the `oxide-drugselling:drugSold` event and the sale logs see it, is now `<stamp id or none>:<purity>` (`none:High`) instead of `High`.
+
+### Fixed
+- Weed made on a server running in French keeps its grade colour in the sell menu.
+
+### Documentation
+- Installation: the database user needs permission to create tables (`sql/install.sql` is not a way around it), and ox_inventory does not run on QBCore.
+- Installation has a new **Updating** section. Every guide names oxide-cocaine 1.4.0 or newer where stamps, stamp reputation, sale goals or `PriceFor` need it, and the events and NUI messages the resource has are all listed.
+
+### Migration Guide
+- `Config.Drugs` is file-only. If you customised `shared/config/drugs.lua`, add `metaKeyFormat = '{stamp}:{purity}'` to the `cocaine_brick` row of the `cocaine` entry, and `groupLabel = 'stamp_name'` to the `cocaine` entry. Without them, stamped bricks share a line with plain bricks of the same purity and their sales build no reputation (see `docs/CONFIGURATION.md`, Grouping, or the new Updating section in `docs/INSTALLATION.md`).
+- Custom locale files can add the new `label_*`, `sell_grade_unknown` and `evidence_report_*` keys (listed in `locales/en.json`). Without them those texts show in English.
+- No SQL. Restart the resource after updating, and update oxide-cocaine to 1.4.0 for stamps.
+
 ## [2.2.1] - 2026-11-18
 
 ### Changed
